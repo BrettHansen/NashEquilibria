@@ -1,0 +1,12 @@
+program 		-> LBRACE STAGES NUM players payoff_table RBRACE
+
+players 		-> player player
+player			-> name COLON action_list HASH
+action_list		-> action action_list
+action_list		-> action
+
+payoff_table 	-> payoff_row payoff_table
+payoff_table	-> payoff_row
+payoff_row		-> payoff payoff_row HASH
+payoff_row		-> payoff
+payoff			-> NUM NUM SEMICOLON
