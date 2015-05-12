@@ -3,11 +3,11 @@
 #define NASH_H
 
 struct sgp_node
-{
-	int* s1;
-	int* s2;
-	struct sgp_node* next;
-};
+	{
+		int* s1;
+		int* s2;
+		struct sgp_node* next;
+	};
 
 void find_all_nash();
 void build_strategies(int s);

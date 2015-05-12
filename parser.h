@@ -9,29 +9,34 @@
 #include <math.h>
 #include <limits.h>
 
-enum Bool {
+enum Bool
+	{
 	FALSE = 0, TRUE
-};
+	};
 
-enum TokenTypes {
+enum TokenTypes
+	{
 	HASH = 1, COLON, SEMICOLON, LBRACE, RBRACE, NUM, ID, ERROR, STAGES
-};
+	};
 
-struct player {
-	char* name;
-	struct action_list* action_list;
-};
+struct player
+	{
+		char* name;
+		struct action_list* action_list;
+	};
 
-struct action_list {
-	char* action;
-	struct action_list* next;
-	int actions;
-};
+struct action_list
+	{
+		char* action;
+		struct action_list* next;
+		int actions;
+	};
 
-struct pair {
-	int p1;
-	int p2;
-};
+struct pair
+	{
+		int p1;
+		int p2;
+	};
 
 #define MAX_TOKEN_LENGTH 100
 char token[MAX_TOKEN_LENGTH]; // token string
