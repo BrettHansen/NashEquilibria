@@ -7,11 +7,30 @@ int p1_strats_size;
 int p2_strats_size;
 int count;
 int sgp_count;
-int show_sgp_only;
-int *p2_br_payoff;
 
 int del = 0;
 struct sgp_node* sgp_nash_list;
+
+void find_sgp_nash_equilibria()
+{
+	struct sgp_node* iter = sgp_nash_list;
+	int stage;
+
+	find_stage_nash();
+
+	while(iter)
+	{
+		printf("%d, %d\n", iter->s1, iter->s2);
+		iter = iter->next;
+	}
+
+	for(stage = 1; stage < stages; stage++)
+	{
+
+	}
+}
+
+void
 
 void find_stage_nash()
 {
@@ -36,6 +55,8 @@ void calculate_nash_all_sgp()
 	int a;
 	int b;
 	int max;
+	int* p2_br_payoff;
+
 	p2_br_payoff = (int*)malloc(sizeof(int) * p1_strats_size);
 	struct sgp_node* iter = NULL;
 
@@ -55,7 +76,7 @@ void calculate_nash_all_sgp()
 		max = payoff_table[0][b]->p1;
 		for(a = 0; a < p1_strats_size; a++)
 		{
-			if(max > payoff_table[a][b]->p1)
+			if(max < payoff_table[a][b]->p1)
 				max = payoff_table[a][b]->p1;
 		}
 
@@ -65,7 +86,6 @@ void calculate_nash_all_sgp()
 			if(max == payoff_table[a][b]->p1 && p2_br_payoff[a] == payoff_table[a][b]->p2)
 			{
 				// SGP NASH
-				printf("found nash!\n");
 				if(!iter)
 				{
 					iter = (struct sgp_node*)malloc(sizeof(struct sgp_node));
@@ -129,21 +149,7 @@ int main()
 {
 	parse_program();
 
-	show_sgp_only = FALSE;
-
-	find_stage_nash();
-
-	struct sgp_node* iter = sgp_nash_list;
-	int i;
-	for(i = 0; i < p1_strats_size; i++)
-		printf("%d ", p2_br_payoff[i]);
-	printf("\n");
-
-	while(iter)
-	{
-		printf("%d, %d\n", iter->s1, iter->s2);
-		iter = iter->next;
-	}
+	find_sgp_nash_equilibria();
 
 	return 0;
 }

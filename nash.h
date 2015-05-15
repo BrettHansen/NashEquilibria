@@ -9,6 +9,7 @@ struct sgp_node
 		struct sgp_node* next;
 	};
 
+void find_sgp_nash_equilibria();
 void find_stage_nash();
 void calculate_nash_all_sgp();
 void fill_strats(int** all_strats, int size, int a, int b, int s);
